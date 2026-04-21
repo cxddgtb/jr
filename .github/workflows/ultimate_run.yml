@@ -1,0 +1,44 @@
+name: 🌟 Quant Ultimate V7 (Self-Optimizing Ensemble)
+
+on:
+  schedule:
+    - cron: '0 3 * * *'    # 北京时间 11:00
+    - cron: '30 6 * * *'   # 北京时间 14:30
+  workflow_dispatch:
+
+concurrency:
+  group: quant-analysis
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.10' }
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            data/cache
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+      - name: Install Dependencies
+        run: pip install -r requirements.txt --quiet
+      - name: Run Ultimate Pipeline
+        run: python -m src.core
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+      - name: Commit Archives & Config
+        run: |
+          git config user.name "quant-bot"
+          git config user.email "bot@quant.local"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "✅ No changes to commit"
+          else
+            git commit -m "🤖 Auto: archive & optimize $(date '+%Y-%m-%d %H:%M CST')"
+            git push || echo "⚠️ Push failed (conflict/rate limit)"
+          fi
