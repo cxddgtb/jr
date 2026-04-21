@@ -1,0 +1,47 @@
+version: "7.0"
+weights:
+  trend: 0.30
+  momentum: 0.25
+  volume: 0.15
+  volatility: 0.20
+  sentiment: 0.10
+thresholds:
+  buy_conf: 0.72
+  sell_conf: 0.28
+  adx_trend: 25
+  bb_width_high: 0.04
+  bb_width_low: 0.012
+  max_daily_vol: 0.025
+periods:
+  ma_fast: 5
+  ma_slow: 20
+  ma_long: 60
+  rsi_window: 14
+  bb_window: 20
+  atr_window: 14
+  adx_window: 14
+optimization:
+  rolling_window: 120
+  verification_lag_days: 5
+  min_valid_samples: 25
+  adjust_step: 0.025
+  ema_alpha: 0.3
+  bounds:
+    trend: [0.20, 0.45]
+    momentum: [0.15, 0.35]
+    volume: [0.05, 0.25]
+    volatility: [0.15, 0.35]
+    sentiment: [0.05, 0.15]
+    buy_conf: [0.65, 0.80]
+    sell_conf: [0.20, 0.35]
+risk:
+  kelly_fraction: 0.25
+  max_position_pct: 0.15
+  atr_stop_mult: 2.0
+  atr_target_mult: 3.5
+performance:
+  hit_rate: 0.5
+  profit_factor: 1.0
+  error_type: "初始化"
+  runs: 0
+  ema_hit_rate: 0.5
