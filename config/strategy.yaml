@@ -31,7 +31,7 @@ performance:
   error_type: 初始化
   hit_rate: 0.5
   profit_factor: 1.0
-  runs: 14
+  runs: 15
 periods:
   adx_window: 14
   atr_window: 14
@@ -49,13 +49,13 @@ thresholds:
   adx_trend: 25
   bb_width_high: 0.04
   bb_width_low: 0.012
-  buy_conf: 0.9300000000000002
+  buy_conf: 0.9450000000000002
   max_daily_vol: 0.025
   sell_conf: 0.28
 version: '7.0'
 weights:
-  momentum: 0.228
-  sentiment: 0.091
-  trend: 0.197
-  volatility: 0.344
-  volume: 0.14
+  momentum: 0.226
+  sentiment: 0.09
+  trend: 0.198
+  volatility: 0.347
+  volume: 0.139
