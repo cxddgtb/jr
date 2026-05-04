@@ -31,7 +31,7 @@ performance:
   error_type: 初始化
   hit_rate: 0.5
   profit_factor: 1.0
-  runs: 26
+  runs: 27
 periods:
   adx_window: 14
   atr_window: 14
@@ -49,7 +49,7 @@ thresholds:
   adx_trend: 25
   bb_width_high: 0.04
   bb_width_low: 0.012
-  buy_conf: 1.1099999999999994
+  buy_conf: 1.1249999999999993
   max_daily_vol: 0.025
   sell_conf: 0.28
 version: '7.0'
